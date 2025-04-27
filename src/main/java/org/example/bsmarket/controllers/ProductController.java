@@ -27,13 +27,14 @@ public class ProductController {
         return "redirect:/"; //перезагрузка страницы
     }
     @PostMapping("/product/delete/{id}")
-    public String deleteproduct(@PathVariable Long id){//берет id из post и преобразует в Long
+    public String deleteProduct(@PathVariable Long id){//берет id из post и преобразует в Long
         productService.deleteProduct(id);
         return "redirect:/";
 
     }
-    @PostMapping("/product/{id}")
-    public String productInfo(Long id){
-
+    @GetMapping("/product/{id}")
+    public String productInfo(@PathVariable Long id, Model model){
+        model.addAttribute("item", productService.getItemById(id));
+        return "product-info";
     }
 }
