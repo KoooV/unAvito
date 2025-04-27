@@ -6,10 +6,10 @@
 <body>
 <h1>Detailed info</h1>
 <hr>
-<b>Item name</b>${item.title}<br>
-<b>Price</b>${item.price}<br>
-<b>City</b>${item.city}<br>
-<b>Description</b>${item.description}<br>
+<b>Item: </b>${item.title}<br>
+<b>Price: </b>${item.price}<br>
+<b>City: </b>${item.city}<br>
+<b>Description: </b>${item.description}<br>
 <hr>
 <form action="/product/delete/${item.id}" method="post">
     <input type="submit" value="Delete item"/>
