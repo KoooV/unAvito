@@ -1,39 +1,36 @@
 package org.example.bsmarket.services;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.bsmarket.models.Product;
+import org.example.bsmarket.repositories.ProductRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class ProductService {
-    private List<Product> products = new ArrayList<>();
-    private long ID = 0;
 
-    {//нестатический блок инициализации, выполняется при создании объекта класса, до вызоыв конструктора
-        products.add(new Product(++ID,"Iphone 16", "abcd", 60000, "Moscow"));
-        products.add(new Product(+ID,"Iphone 16pro", "abcd", 85000, "Moscow"));
-        products.add(new Product(++ID,"Pixel 9", "abcd", 50000, "Moscow"));
-        products.add(new Product(++ID,"Galaxy S25", "abcd", 60000, "Moscow"));
-    }
+    private final ProductRepo productRepo;
 
-    public List<Product> list(){return products;}
+    public List<Product> list(String title){
+        List<Product> products = productRepo.findAll();
+        return products;}
 
     public void saveProduct(Product product){
-        product.setId(++ID);
-        products.add(product);
+        log.info("Saving new {}", product);//в {} вставиться строковое представление product при помощи toString()
+        productRepo.save(product);
     }
 
     public void deleteProduct(Long id){
-        products.removeIf(product -> product.getId().equals(id));
+        productRepo.deleteById(id);
     }
 
     public Product getItemById(Long id) {
-        for (Product product : products){
-            if(product.getId().equals(id)){return product;}
-        }
-        return null;
+        return productRepo.findById(id).orElse(null);//если товара не найден то вернется null
 
     }
 }

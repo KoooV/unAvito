@@ -1,13 +1,33 @@
 package org.example.bsmarket.models;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @AllArgsConstructor
+
+@Data
+@Entity
+@Table(name = "products")
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "description", columnDefinition = "text")//по умолчанию varchar те 255 символов, меняем тип на текст тк он имеет неограниченное кол-во символов
     private String description;
+
+    @Column(name = "price")
     private int price;
+
+    @Column(name = "city")
     private String city;
 
     public Product() {

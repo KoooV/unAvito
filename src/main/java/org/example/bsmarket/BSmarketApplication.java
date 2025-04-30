@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfig
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
 @SpringBootApplication(exclude = {
-        DataSourceAutoConfiguration.class,       // Отключает автонастройку DataSource
-        JpaRepositoriesAutoConfiguration.class,  // Отключает сканирование репозиториев JPA
+//        DataSourceAutoConfiguration.class,  Отключает автонастройку DataSource
+//        JpaRepositoriesAutoConfiguration.class,  Отключает сканирование репозиториев JPA
         SecurityAutoConfiguration.class //Отключает стандартную страницу входа Spring security
 })
 public class BSmarketApplication {
